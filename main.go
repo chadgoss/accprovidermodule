@@ -1,10 +1,15 @@
+// main.go
 package main
 
 import (
-    "fmt"
+        "github.com/hashicorp/terraform-plugin-sdk/plugin"
+        "github.com/hashicorp/terraform-plugin-sdk/terraform"
 )
 
 func main() {
-    fmt.Println("Hello World")
+        plugin.Serve(&plugin.ServeOpts{
+                ProviderFunc: func() terraform.ResourceProvider {
+                        return Provider()
+                },
+        })
 }
-
